@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biology Course Calendar (MWF Only)</title>
+  <style>
+    /* General Reset and Basic Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #f7f9fc;
+      color: #333;
+    }
+    header, nav, main, footer {
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .logo h2 {
+      padding: 0.5rem 1rem;
+      color: #333;
+    }
+    .menu {
+      display: flex;
+    }
+    .menu li {
+      list-style: none;
+      margin: 0 1rem;
+    }
+    .menu li a {
+      font-weight: bold;
+      padding: 0.5rem;
+      display: block;
+    }
+
+    /* Main Content */
+    main {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      min-height: 80vh;
+    }
+
+    /* Tabs for Months */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eee;
+    }
+    .tab {
+      cursor: pointer;
+      padding: 0.75rem 1.5rem;
+      margin-right: 2px;
+      background-color: #e7e9ed;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .tab:hover {
+      background-color: #d5d7da;
+    }
+    .tab.active {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      font-weight: bold;
+    }
+
+    /* Calendar Display */
+    .calendar-container {
+      display: none; /* hidden by default */
+      padding: 1rem;
+    }
+    .calendar-container.active {
+      display: block; /* visible when active */
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .week-card {
+      background-color: #f2f4f8;
+      border-radius: 5px;
+      padding: 1rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .week-card:hover {
+      background-color: #e4e7ed;
+      border-color: #ccc;
+    }
+    .week-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .week-card p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none; 
+      justify-content: center; 
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 1.5rem;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+    .modal h2 {
+      margin-bottom: 1rem;
+    }
+    .modal p {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+    }
+    .close-modal:hover {
+      color: #f00;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <h2>Biology Course (MWF)</h2>
+    </div>
+    <ul class="menu">
+      <li><a href="#" onclick="scrollToTop()">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Course Calendar (Monday, Wednesday, Friday Only)</h1>
+    <p>Welcome to your course schedule. Click on any week to view details.  
+    <br><strong>Note:</strong> Class meets only on <em>Monday, Wednesday, and Friday</em> each week.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-month="jan2025">January 2025</div>
+      <div class="tab" data-month="feb2025">February 2025</div>
+      <div class="tab" data-month="mar2025">March 2025</div>
+      <div class="tab" data-month="apr2025">April 2025</div>
+      <div class="tab" data-month="may2025">May 2025</div>
+    </div>
+
+    <!-- Calendar Containers -->
+    <!-- January 2025 -->
+    <div id="jan2025" class="calendar-container active">
+      <div class="week-grid" id="jan-weeks">
+        <!-- Weeks will be injected by JavaScript -->
+      </div>
+    </div>
+
+    <!-- February 2025 -->
+    <div id="feb2025" class="calendar-container">
+      <div class="week-grid" id="feb-weeks">
+        <!-- Weeks will be injected by JavaScript -->
+      </div>
+    </div>
+
+    <!-- March 2025 -->
+    <div id="mar2025" class="calendar-container">
+      <div class="week-grid" id="mar-weeks">
+        <!-- Weeks will be injected by JavaScript -->
+      </div>
+    </div>
+
+    <!-- April 2025 -->
+    <div id="apr2025" class="calendar-container">
+      <div class="week-grid" id="apr-weeks">
+        <!-- Weeks will be injected by JavaScript -->
+      </div>
+    </div>
+
+    <!-- May 2025 -->
+    <div id="may2025" class="calendar-container">
+      <div class="week-grid" id="may-weeks">
+        <!-- Weeks will be injected by JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal (Hidden by default) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContent">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <h2 id="modalTitle">Week Details</h2>
+      <p id="modalTopic"></p>
+      <p id="modalObjective"></p>
+      <p id="modalMaterials"></p>
+      <p id="modalActivities"></p>
+      <p id="modalAssessments"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Biology Course (MWF). All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    /* SCROLL TO TOP HELPER */
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /*
+     * DATA (Based on your provided syllabus info)
+     * Adjusted dateRange to reflect Monday/Wednesday/Friday only.
+     */
+    const courseWeeks = [
+      {
+        weekNumber: 1,
+        dateRange: "Jan 13, 15, 17",
+        month: "jan2025",
+        topic: "The Science of Biology",
+        objective: "Objective 1: Biology: The study of life",
+        materials: "Chapter 1",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 2,
+        dateRange: "Jan 20, 22, 24",
+        month: "jan2025",
+        topic: "The molecules of cells, Cell Structure and Function",
+        objective: "Objective 2: The molecules of cells, Cell Structure and Function",
+        materials: "Chapters 2 and 3",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework, Class Debate"
+      },
+      {
+        weekNumber: 3,
+        dateRange: "Jan 27, 29, 31",
+        month: "jan2025",
+        topic: "Cell Structure and Function",
+        objective: "Objective 2: Cell Structure and Function",
+        materials: "Chapter 3",
+        activities: "In class, Lecture, Quiz, Class Debate",
+        assessments: "Writing Assignments, Class Debate"
+      },
+      {
+        weekNumber: 4,
+        dateRange: "Feb 3, 5, 7",
+        month: "feb2025",
+        topic: "Membrane structure and function",
+        objective: "Objective 3: Membrane structure and function",
+        materials: "Chapter 4",
+        activities: "In class, Lecture, Quiz, Class Debate",
+        assessments: "Test 1, Writing Assignments"
+      },
+      {
+        weekNumber: 5,
+        dateRange: "Feb 10, 12, 14",
+        month: "feb2025",
+        topic: "Cell Metabolism",
+        objective: "Objective 3: Cell Metabolism",
+        materials: "Chapter 6",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework, Class Debate"
+      },
+      {
+        weekNumber: 6,
+        dateRange: "Feb 17, 19, 21",
+        month: "feb2025",
+        topic: "Cellular respiration",
+        objective: "Objective 4: Cellular respiration",
+        materials: "Chapter 7",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 7,
+        dateRange: "Feb 24, 26, 28",
+        month: "feb2025",
+        topic: "Photosynthesis",
+        objective: "Objective 4: Photosynthesis",
+        materials: "Chapter 8",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 8,
+        dateRange: "Mar 3, 5, 7",
+        month: "mar2025",
+        topic: "Pattern of Gene Inheritance",
+        objective: "Objective 6: Pattern of Gene Inheritance",
+        materials: "Chapter 23",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Test 2, Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 9,
+        dateRange: "Mar 10, 12, 14",
+        month: "mar2025",
+        topic: "Cell Division",
+        objective: "Objective 5: Cell Division",
+        materials: "Chapter 5 (Online class or recorded lecture)",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework, Class Debate"
+      },
+      {
+        weekNumber: 10,
+        dateRange: "Mar 17, 19, 21",
+        month: "mar2025",
+        topic: "Spring Break",
+        objective: "No classes",
+        materials: "N/A",
+        activities: "Enjoy your break!",
+        assessments: "None"
+      },
+      {
+        weekNumber: 11,
+        dateRange: "Mar 24, 26, 28",
+        month: "mar2025",
+        topic: "Concept 3: Releasing Chemical Energy",
+        objective: "Photosynthesis, cell respiration",
+        materials: "Chapter 7/8",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 12,
+        dateRange: "Mar 31, Apr 2, Apr 4",
+        month: "mar2025",
+        topic: "DNA Structure and Gene Expression",
+        objective: "DNA Structure and Gene Expression",
+        materials: "Chapter 25",
+        activities: "In class, Lecture, Quiz, Class Debate",
+        assessments: "Writing Assignments"
+      },
+      {
+        weekNumber: 13,
+        dateRange: "Apr 7, 9, 11",
+        month: "apr2025",
+        topic: "Biotechnology and Genomics",
+        objective: "Biotechnology and Genomics",
+        materials: "Chapter 26",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Test 3, Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 14,
+        dateRange: "Apr 14, 16, 18",
+        month: "apr2025",
+        topic: "Microbiology",
+        objective: "Objective 8: Microbiology",
+        materials: "Chapter 28",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 15,
+        dateRange: "Apr 21, 23, 25",
+        month: "apr2025",
+        topic: "Protists and Fungi",
+        objective: "Objective 8: Protists and Fungi",
+        materials: "Chapter 29",
+        activities: "In class, Lecture, Quiz, Assignments",
+        assessments: "Writing Assignments, Homework"
+      },
+      {
+        weekNumber: 16,
+        dateRange: "Apr 28, 30, May 2",
+        month: "apr2025", 
+        topic: "Final Exam",
+        objective: "Comprehensive final exam",
+        materials: "All chapters",
+        activities: "Final exam based on university assigned date and time",
+        assessments: "N/A"
+      }
+    ];
+
+    /* Function to generate the week cards for each month */
+    function generateCalendar() {
+      courseWeeks.forEach((week) => {
+        const container = document.getElementById(`${week.month}-weeks`);
+        if (container) {
+          // Create a card for the week
+          const card = document.createElement('div');
+          card.className = 'week-card';
+          card.onclick = () => openModal(week); // open the modal with data
+
+          const header = document.createElement('h3');
+          header.textContent = `Week ${week.weekNumber}: ${week.dateRange}`;
+          card.appendChild(header);
+
+          const topicP = document.createElement('p');
+          topicP.textContent = `Topic: ${week.topic}`;
+          card.appendChild(topicP);
+
+          container.appendChild(card);
+        }
+      });
+    }
+
+    /* Modal handling */
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTopic = document.getElementById('modalTopic');
+    const modalObjective = document.getElementById('modalObjective');
+    const modalMaterials = document.getElementById('modalMaterials');
+    const modalActivities = document.getElementById('modalActivities');
+    const modalAssessments = document.getElementById('modalAssessments');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function openModal(week) {
+      modalTitle.textContent = `Week ${week.weekNumber} – ${week.dateRange}`;
+      modalTopic.innerHTML = `<strong>Topic:</strong> ${week.topic}`;
+      modalObjective.innerHTML = `<strong>Objective:</strong> ${week.objective}`;
+      modalMaterials.innerHTML = `<strong>Learning Materials:</strong> ${week.materials}`;
+      modalActivities.innerHTML = `<strong>Activities:</strong> ${week.activities}`;
+      modalAssessments.innerHTML = `<strong>Assessments:</strong> ${week.assessments}`;
+      modalOverlay.classList.add('active');
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    /* Tabs handling */
+    const tabs = document.querySelectorAll('.tab');
+    const calendars = document.querySelectorAll('.calendar-container');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach((t) => t.classList.remove('active'));
+        // Hide all calendar containers
+        calendars.forEach((c) => c.classList.remove('active'));
+
+        // Activate current tab and corresponding calendar
+        tab.classList.add('active');
+        const monthId = tab.getAttribute('data-month');
+        document.getElementById(monthId).classList.add('active');
+      });
+    });
+
+    // Generate the calendar on page load
+    generateCalendar();
+  </script>
+</body>
+</html>
