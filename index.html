@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biology Writing & Research - Class Calendar</title>
+  <!-- Include Bootstrap CSS (via CDN) for quick styling -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <!-- Include optional Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+
+  <style>
+    /* 
+    ======================
+    GLOBAL STYLES 
+    ======================
+    */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #faf8e5; /* Light background to complement dark yellow theme */
+      color: #332c2c; /* A dark text color */
+    }
+
+    /* 
+    ======================
+    PARALLAX JUMBOTRON 
+    ======================
+    */
+    .parallax-jumbotron {
+      position: relative;
+      background: url("https://via.placeholder.com/1920x1080/FFC107/000000?text=Parallax+Image") 
+        no-repeat center center fixed;
+      /* Replace the URL above with your own image if desired */
+      background-size: cover;
+      background-attachment: fixed;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .parallax-jumbotron::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(51, 44, 44, 0.55);
+      /* overlay color */
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 1;
+    }
+    .parallax-content h1 {
+      font-size: 3rem;
+    }
+    .parallax-content p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* 
+    ======================
+    NAVIGATION BAR 
+    ======================
+    */
+    .navbar {
+      background-color: #c49b08; /* dark yellow */
+      border-bottom: 2px solid #af8e07; /* slightly darker border */
+    }
+    .navbar-brand,
+    .nav-link {
+      color: #fff !important;
+    }
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: #ffe58a !important;
+    }
+    .navbar-toggler {
+      border-color: #ffe58a;
+    }
+
+    /* 
+    ======================
+    TAB CONTENT 
+    ======================
+    */
+    .tab-content {
+      margin-top: 40px;
+      padding: 0 15px 30px 15px;
+    }
+
+    /* 
+    ======================
+    HOME TAB 
+    ======================
+    */
+    #home {
+      margin-top: -40px; /* pull content up under nav, if desired */
+    }
+
+    .jumbotron {
+      display: none; /* Hide default jumbotron to use the parallax one instead */
+    }
+
+    /* 
+    ======================
+    CALENDAR TAB 
+    ======================
+    */
+    #calendar {
+      animation: fadeIn 0.5s ease;
+    }
+
+    /* Month Selection Buttons */
+    .month-selection {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .month-btn {
+      margin: 5px;
+      background-color: #f9bc1b;
+      border: none;
+      color: #332c2c;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .month-btn:hover {
+      background-color: #f5a623;
+      color: #fff;
+    }
+
+    /* Week Card Style */
+    .week-card {
+      cursor: pointer;
+      margin-bottom: 15px;
+      background-color: #ffffff;
+      border: 1px solid #af8e07;
+      border-radius: 5px;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0; /* for fade-in effect controlled by keyframes */
+    }
+    .week-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      background-color: #f9bc1b; /* bright accent */
+      color: #332c2c;
+      padding: 15px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .card-header i.arrow {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    .card-header i.expanded {
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    .details {
+      display: none;
+      padding: 15px;
+      border-top: 1px solid #af8e07;
+      animation: growDown 0.3s ease-in-out forwards;
+      transform-origin: top center;
+    }
+
+    /* 
+    ======================
+    SYLLABUS TAB 
+    ======================
+    */
+    #syllabus {
+      animation: fadeIn 0.5s ease;
+    }
+
+    #syllabus-table {
+      background-color: #fff;
+      border: 2px solid #af8e07;
+    }
+    #syllabus-table th {
+      background-color: #f9bc1b;
+      color: #332c2c;
+    }
+    #syllabus-table th,
+    #syllabus-table td {
+      padding: 8px;
+      border: 1px solid #af8e07;
+    }
+
+    /* 
+    ======================
+    FOOTER 
+    ======================
+    */
+    footer {
+      background-color: #c49b08;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* 
+    ======================
+    ANIMATIONS 
+    ======================
+    */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes growDown {
+      0% {
+        transform: scaleY(0);
+      }
+      80% {
+        transform: scaleY(1.1);
+      }
+      100% {
+        transform: scaleY(1);
+      }
+    }
+
+    /* 
+    ======================
+    RESPONSIVE 
+    ======================
+    */
+    @media (max-width: 576px) {
+      .month-selection {
+        display: block;
+      }
+      .parallax-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Bio Writing & Research</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link active" href="#" onclick="showTab('home')"
+          >Home</a
+        >
+        <a class="nav-item nav-link" href="#" onclick="showTab('calendar')"
+          >Calendar</a
+        >
+        <a class="nav-item nav-link" href="#" onclick="showTab('syllabus')"
+          >Syllabus</a
+        >
+      </div>
+    </div>
+  </nav>
+
+  <!-- PARALLAX JUMBOTRON (HOME PAGE) -->
+  <div
+    class="parallax-jumbotron"
+    id="home"
+    style="display: block;"  <!-- Home is visible by default -->
+  >
+    <div class="parallax-content">
+      <h1>Welcome to Biology Writing & Research!</h1>
+      <p>
+        Strengthen your scientific writing and research skills.  
+        Use the navigation bar above to explore the course’s calendar, weekly
+        tasks, and syllabus.
+      </p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="container">
+    <!-- CALENDAR TAB -->
+    <div id="calendar" class="tab-content" style="display: none;">
+      <h2 class="mb-4">Course Calendar</h2>
+      <!-- Month Selection -->
+      <div class="month-selection">
+        <button class="btn month-btn" onclick="showMonth('January')">
+          January
+        </button>
+        <button class="btn month-btn" onclick="showMonth('February')">
+          February
+        </button>
+        <button class="btn month-btn" onclick="showMonth('March')">
+          March
+        </button>
+        <button class="btn month-btn" onclick="showMonth('April')">
+          April
+        </button>
+      </div>
+      <!-- Where the weeks for each month appear -->
+      <div id="month-container"></div>
+    </div>
+
+    <!-- SYLLABUS TAB -->
+    <div id="syllabus" class="tab-content" style="display: none;">
+      <h2>Complete Syllabus at a Glance</h2>
+      <div class="table-responsive">
+        <table id="syllabus-table" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Chapter</th>
+              <th>Topic</th>
+              <th>Course Objectives</th>
+              <th>SLOs</th>
+              <th>Activities</th>
+              <th>Assessments</th>
+            </tr>
+          </thead>
+          <tbody id="syllabus-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      &copy; <span id="year"></span> Biology Writing & Research | Created for
+      Students
+    </p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  ></script>
+  <script>
+    // Update footer year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // TAB SWITCHING
+    function showTab(tabName) {
+      const tabs = document.getElementsByClassName("tab-content");
+      // Hide all tabs
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+      }
+      // Hide the parallax jumbotron if not "home"
+      const jumbotron = document.getElementById("home");
+      if (tabName === "home") {
+        jumbotron.style.display = "block";
+      } else {
+        jumbotron.style.display = "none";
+      }
+      // Show the selected tab
+      document.getElementById(tabName).style.display = "block";
+      window.scrollTo(0, 0); // scroll to top
+    }
+
+    // DATA (Weeks, Chapters, Topics, etc.)
+    const scheduleData = [
+      {
+        month: "January", // Weeks 1-4
+        week: "Week 1",
+        chapter: "",
+        topic: "Course Syllabus",
+        courseObjectives: "",
+        slos:
+          "Introduction, syllabus review. Students can select interesting biological topics.",
+        activities: "Review of syllabus and introduction",
+        assessments: ""
+      },
+      {
+        month: "January",
+        week: "Week 2",
+        chapter: "1: The Scientific Method",
+        topic: "Basics of the scientific method and experimental design.",
+        courseObjectives:
+          "Teach principles of the scientific method and hypothesis formation.",
+        slos: "Formulate hypotheses; identify variables.",
+        activities:
+          "Discussion on students' selected topics, with the instructor demonstrating article selection and database use for references.",
+        assessments:
+          "Students practice searching articles related to the topic of interest."
+      },
+      {
+        month: "January",
+        week: "Week 3",
+        chapter: "2: Finding Information About Topics in Science",
+        topic: "How to research and evaluate scientific sources.",
+        courseObjectives:
+          "Develop research skills to find and assess credible sources.",
+        slos: "Locate and assess reliable scientific sources.",
+        activities: "Scavenger hunts for articles; compare sources.",
+        assessments:
+          "Quiz; submit experiment designs, evaluate sources, and submit bibliography."
+      },
+      {
+        month: "January",
+        week: "Week 4",
+        chapter: "3: Reading and Writing About Statistical Analyses",
+        topic: "Understanding and writing about statistical data.",
+        courseObjectives:
+          "Train students to interpret and write about statistics.",
+        slos: "Analyze and interpret statistical results.",
+        activities: "Analyze datasets and improve graph design.",
+        assessments: "Write data analysis reports and graphs."
+      },
+      {
+        month: "February", // Weeks 5-8
+        week: "Week 5",
+        chapter: "4: Documenting Sources",
+        topic: "Proper citation and avoiding plagiarism.",
+        courseObjectives:
+          "Teach proper citation practices and plagiarism prevention.",
+        slos: "Cite sources correctly; avoid plagiarism.",
+        activities:
+          "Practice formatting citations; discuss plagiarism. Students should annotate at least 5 articles, of which at least 2 will be used for presentation.",
+        assessments: "Submit citation exercises; plagiarism response."
+      },
+      {
+        month: "February",
+        week: "Week 6",
+        chapter: "5: Preparing a Scientific Paper",
+        topic: "Step-by-step guidance for scientific writing.",
+        courseObjectives:
+          "Guide students to write structured scientific papers.",
+        slos: "Write clear, organized scientific papers.",
+        activities: "Create outlines and peer review sections.",
+        assessments: "Draft paper; quiz on paper structure."
+      },
+      {
+        month: "February",
+        week: "Week 7",
+        chapter: "6: Data Analysis Using Statistics",
+        topic: "Statistical data analysis and presentation.",
+        courseObjectives:
+          "Enable accurate analysis and presentation of statistical data.",
+        slos: "Perform and present statistical analyses.",
+        activities: "Select statistical tests and graph analysis.",
+        assessments: "Submit statistical analyses and graphs."
+      },
+      {
+        month: "February",
+        week: "Week 8 & 9",
+        chapter: "",
+        topic: "Editing and improving scientific documents.",
+        courseObjectives:
+          "Enhance revision skills for scientific writing.",
+        slos: "Revise drafts for clarity and accuracy.",
+        activities: "Edit texts; provide peer feedback.",
+        assessments: "Submit revised drafts; use feedback checklists."
+      },
+      {
+        month: "March", // Weeks 9-12
+        week: "Week 10",
+        chapter: "8: Sample Student Lab Report",
+        topic: "Analyzing and writing lab reports.",
+        courseObjectives:
+          "Provide examples and practice in lab report writing.",
+        slos: "Apply lab report structure and format.",
+        activities: "Critique lab reports; write practice reports.",
+        assessments: "Submit lab reports; analyze example reports."
+      },
+      {
+        month: "March",
+        week: "Week 11",
+        chapter: "9: Poster Presentations",
+        topic: "Designing and presenting scientific posters.",
+        courseObjectives:
+          "Teach effective poster design and presentation skills.",
+        slos: "Design and present scientific posters.",
+        activities: "Mock poster session; poster critique.",
+        assessments: "Prepare and submit posters to present at the end of this course."
+      },
+      {
+        month: "March",
+        week: "Week 12",
+        chapter: "10: Oral Presentations",
+        topic: "Preparing and delivering oral presentations.",
+        courseObjectives:
+          "Prepare students for professional oral presentations.",
+        slos: "Deliver structured, engaging oral talks.",
+        activities: "Three-minute thesis; presentation practice.",
+        assessments:
+          "Prepare oral presentations; submit slides to present at the end of this course."
+      },
+      {
+        month: "March",
+        week: "Week 13-16",
+        chapter: "",
+        topic: "Student Presentation",
+        courseObjectives: "",
+        slos: "",
+        activities: "",
+        assessments: ""
+      },
+      {
+        month: "April", // For demonstration, leftover/final weeks
+        week: "Week 13-16 (continued)",
+        chapter: "",
+        topic: "Student Presentation (continued)",
+        courseObjectives: "",
+        slos: "",
+        activities: "Student final presentations (if extended).",
+        assessments: "Grading of final presentations."
+      }
+    ];
+
+    // Build the Syllabus Table in the Syllabus Tab
+    function buildSyllabusTable() {
+      const tbody = document.getElementById("syllabus-table-body");
+      tbody.innerHTML = ""; // Clear table
+
+      scheduleData.forEach((item) => {
+        const row = document.createElement("tr");
+
+        const weekCell = document.createElement("td");
+        weekCell.textContent = item.week;
+        row.appendChild(weekCell);
+
+        const chapterCell = document.createElement("td");
+        chapterCell.textContent = item.chapter;
+        row.appendChild(chapterCell);
+
+        const topicCell = document.createElement("td");
+        topicCell.textContent = item.topic;
+        row.appendChild(topicCell);
+
+        const objectivesCell = document.createElement("td");
+        objectivesCell.textContent = item.courseObjectives;
+        row.appendChild(objectivesCell);
+
+        const slosCell = document.createElement("td");
+        slosCell.textContent = item.slos;
+        row.appendChild(slosCell);
+
+        const activitiesCell = document.createElement("td");
+        activitiesCell.textContent = item.activities;
+        row.appendChild(activitiesCell);
+
+        const assessmentsCell = document.createElement("td");
+        assessmentsCell.textContent = item.assessments;
+        row.appendChild(assessmentsCell);
+
+        tbody.appendChild(row);
+      });
+    }
+
+    // Build the dynamic calendar: Show only the weeks for the chosen month
+    function showMonth(selectedMonth) {
+      const container = document.getElementById("month-container");
+      container.innerHTML = ""; // Clear
+
+      // Filter weeks for the selected month
+      const filteredWeeks = scheduleData.filter(
+        (item) => item.month === selectedMonth
+      );
+
+      if (filteredWeeks.length === 0) {
+        container.innerHTML = `<p class="text-center">No scheduled items for ${selectedMonth}.</p>`;
+        return;
+      }
+
+      // Create a card for each week
+      filteredWeeks.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "card week-card";
+
+        const cardHeader = document.createElement("div");
+        cardHeader.className = "card-header";
+        cardHeader.textContent = `${item.week} - ${item.topic}`;
+
+        const arrowIcon = document.createElement("i");
+        arrowIcon.className = "fas fa-chevron-right arrow";
+        cardHeader.appendChild(arrowIcon);
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "details";
+
+        // Construct HTML for the details
+        cardBody.innerHTML = `
+          <p><strong>Chapter:</strong> ${item.chapter || "N/A"}</p>
+          <p><strong>Topic:</strong> ${item.topic || "N/A"}</p>
+          <p><strong>Course Objectives:</strong> ${item.courseObjectives || "N/A"}</p>
+          <p><strong>SLOs:</strong> ${item.slos || "N/A"}</p>
+          <p><strong>Activities:</strong> ${item.activities || "N/A"}</p>
+          <p><strong>Assessments:</strong> ${item.assessments || "N/A"}</p>
+        `;
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+        container.appendChild(card);
+
+        // Small delay to stagger animations (optional)
+        card.style.animationDelay = `${0.1 * index}s`;
+
+        // Toggle the display of details on click
+        cardHeader.addEventListener("click", function () {
+          const isVisible = cardBody.style.display === "block";
+          cardBody.style.display = isVisible ? "none" : "block";
+          arrowIcon.classList.toggle("expanded");
+        });
+      });
+    }
+
+    // Initialize table on load
+    buildSyllabusTable();
+  </script>
+</body>
+</html>
