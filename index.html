@@ -15,9 +15,9 @@
   />
 
   <style>
-    /* 
+    /*
     ======================
-    GLOBAL STYLES 
+    GLOBAL STYLES
     ======================
     */
     body {
@@ -25,56 +25,12 @@
       padding: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: #faf8e5; /* Light background to complement dark yellow theme */
-      color: #332c2c; /* A dark text color */
+      color: #332c2c; /* Dark text color */
     }
 
-    /* 
+    /*
     ======================
-    PARALLAX JUMBOTRON 
-    ======================
-    */
-    .parallax-jumbotron {
-      position: relative;
-      background: url("https://via.placeholder.com/1920x1080/FFC107/000000?text=Parallax+Image") 
-        no-repeat center center fixed;
-      /* Replace the URL above with your own image if desired */
-      background-size: cover;
-      background-attachment: fixed;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-    }
-
-    .parallax-jumbotron::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(51, 44, 44, 0.55);
-      /* overlay color */
-    }
-
-    .parallax-content {
-      position: relative;
-      z-index: 1;
-    }
-    .parallax-content h1 {
-      font-size: 3rem;
-    }
-    .parallax-content p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* 
-    ======================
-    NAVIGATION BAR 
+    NAVIGATION BAR
     ======================
     */
     .navbar {
@@ -93,39 +49,82 @@
       border-color: #ffe58a;
     }
 
-    /* 
+    /*
     ======================
-    TAB CONTENT 
+    PARALLAX SECTION (HOME)
+    ======================
+    */
+    #home-section {
+      display: block;
+      position: relative;
+      background: url("https://via.placeholder.com/1920x1080/FFC107") no-repeat center center fixed;
+      /* Replace with your preferred image URL */
+      background-size: cover;
+      background-attachment: fixed;
+      height: 400px;
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Dark overlay to enhance text visibility */
+    #home-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Content container inside the parallax */
+    .home-content {
+      position: relative; /* so it appears over the overlay */
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .home-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .home-content p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    /*
+    ======================
+    TAB CONTENT
     ======================
     */
     .tab-content {
+      display: none; /* Hidden by default, toggled by JS */
+      animation: fadeIn 0.5s ease;
+      padding: 40px 15px;
+    }
+
+    /* Show the container (with margin) below the parallax on non-Home tabs */
+    .container {
       margin-top: 40px;
-      padding: 0 15px 30px 15px;
     }
 
-    /* 
+    /*
     ======================
-    HOME TAB 
-    ======================
-    */
-    #home {
-      margin-top: -40px; /* pull content up under nav, if desired */
-    }
-
-    .jumbotron {
-      display: none; /* Hide default jumbotron to use the parallax one instead */
-    }
-
-    /* 
-    ======================
-    CALENDAR TAB 
+    CALENDAR TAB
     ======================
     */
     #calendar {
-      animation: fadeIn 0.5s ease;
+      /* Additional styling or overrides if needed */
     }
 
-    /* Month Selection Buttons */
     .month-selection {
       text-align: center;
       margin-bottom: 30px;
@@ -153,21 +152,19 @@
       transition: box-shadow 0.3s ease, transform 0.3s ease;
       overflow: hidden;
       animation: fadeInUp 0.5s ease forwards;
-      opacity: 0; /* for fade-in effect controlled by keyframes */
+      opacity: 0; /* for fade-in effect (keyframe) */
     }
     .week-card:hover {
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
       transform: translateY(-2px);
     }
-
     .card-header {
-      background-color: #f9bc1b; /* bright accent */
+      background-color: #f9bc1b;
       color: #332c2c;
       padding: 15px;
       font-weight: bold;
       position: relative;
     }
-
     .card-header i.arrow {
       position: absolute;
       right: 20px;
@@ -187,32 +184,28 @@
       transform-origin: top center;
     }
 
-    /* 
+    /*
     ======================
-    SYLLABUS TAB 
+    SYLLABUS TAB
     ======================
     */
-    #syllabus {
-      animation: fadeIn 0.5s ease;
-    }
-
-    #syllabus-table {
+    #syllabus table {
       background-color: #fff;
       border: 2px solid #af8e07;
     }
-    #syllabus-table th {
+    #syllabus th {
       background-color: #f9bc1b;
       color: #332c2c;
     }
-    #syllabus-table th,
-    #syllabus-table td {
+    #syllabus th,
+    #syllabus td {
       padding: 8px;
       border: 1px solid #af8e07;
     }
 
-    /* 
+    /*
     ======================
-    FOOTER 
+    FOOTER
     ======================
     */
     footer {
@@ -223,9 +216,9 @@
       margin-top: 50px;
     }
 
-    /* 
+    /*
     ======================
-    ANIMATIONS 
+    KEYFRAMES / ANIMATIONS
     ======================
     */
     @keyframes fadeIn {
@@ -238,7 +231,6 @@
         transform: translateY(0);
       }
     }
-
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -249,7 +241,6 @@
         transform: translateY(10px);
       }
     }
-
     @keyframes growDown {
       0% {
         transform: scaleY(0);
@@ -262,17 +253,20 @@
       }
     }
 
-    /* 
+    /*
     ======================
-    RESPONSIVE 
+    RESPONSIVE
     ======================
     */
     @media (max-width: 576px) {
+      .home-content h1 {
+        font-size: 1.8rem;
+      }
+      .home-content p {
+        font-size: 1rem;
+      }
       .month-selection {
         display: block;
-      }
-      .parallax-content h1 {
-        font-size: 2rem;
       }
     }
   </style>
@@ -280,7 +274,9 @@
 <body>
   <!-- NAVIGATION BAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">Bio Writing & Research</a>
+    <a class="navbar-brand" href="#" onclick="showTab('home')">
+      Bio Writing & Research
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -307,26 +303,22 @@
     </div>
   </nav>
 
-  <!-- PARALLAX JUMBOTRON (HOME PAGE) -->
-  <div
-    class="parallax-jumbotron"
-    id="home"
-    style="display: block;"  <!-- Home is visible by default -->
-  >
-    <div class="parallax-content">
+  <!-- HOME SECTION (PARALLAX) -->
+  <section id="home-section">
+    <div class="home-content">
       <h1>Welcome to Biology Writing & Research!</h1>
       <p>
-        Strengthen your scientific writing and research skills.  
-        Use the navigation bar above to explore the course’s calendar, weekly
-        tasks, and syllabus.
+        This course is designed to strengthen your scientific writing and
+        research skills. Use the navigation bar above to explore the course
+        calendar, tasks, and syllabus.
       </p>
     </div>
-  </div>
+  </section>
 
-  <!-- MAIN CONTENT CONTAINER -->
+  <!-- MAIN CONTENT AREA -->
   <div class="container">
     <!-- CALENDAR TAB -->
-    <div id="calendar" class="tab-content" style="display: none;">
+    <div id="calendar" class="tab-content">
       <h2 class="mb-4">Course Calendar</h2>
       <!-- Month Selection -->
       <div class="month-selection">
@@ -348,7 +340,7 @@
     </div>
 
     <!-- SYLLABUS TAB -->
-    <div id="syllabus" class="tab-content" style="display: none;">
+    <div id="syllabus" class="tab-content">
       <h2>Complete Syllabus at a Glance</h2>
       <div class="table-responsive">
         <table id="syllabus-table" class="table table-bordered">
@@ -386,26 +378,34 @@
     // Update footer year automatically
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // TAB SWITCHING
+    // Show or hide sections
     function showTab(tabName) {
+      // Hide all tab-content sections
       const tabs = document.getElementsByClassName("tab-content");
-      // Hide all tabs
       for (let i = 0; i < tabs.length; i++) {
         tabs[i].style.display = "none";
       }
-      // Hide the parallax jumbotron if not "home"
-      const jumbotron = document.getElementById("home");
+
+      // Also hide the home (parallax) section by default
+      const homeSection = document.getElementById("home-section");
+      homeSection.style.display = "none";
+
+      // If user selects "home," show parallax & hide other tabs
       if (tabName === "home") {
-        jumbotron.style.display = "block";
+        homeSection.style.display = "block";
       } else {
-        jumbotron.style.display = "none";
+        // Otherwise, show the requested tab
+        const tabToShow = document.getElementById(tabName);
+        if (tabToShow) {
+          tabToShow.style.display = "block";
+        }
       }
-      // Show the selected tab
-      document.getElementById(tabName).style.display = "block";
-      window.scrollTo(0, 0); // scroll to top
+
+      // Scroll back to top
+      window.scrollTo(0, 0);
     }
 
-    // DATA (Weeks, Chapters, Topics, etc.)
+    // Schedule Data
     const scheduleData = [
       {
         month: "January", // Weeks 1-4
@@ -519,7 +519,8 @@
           "Teach effective poster design and presentation skills.",
         slos: "Design and present scientific posters.",
         activities: "Mock poster session; poster critique.",
-        assessments: "Prepare and submit posters to present at the end of this course."
+        assessments:
+          "Prepare and submit posters to present at the end of this course."
       },
       {
         month: "March",
@@ -544,7 +545,7 @@
         assessments: ""
       },
       {
-        month: "April", // For demonstration, leftover/final weeks
+        month: "April",
         week: "Week 13-16 (continued)",
         chapter: "",
         topic: "Student Presentation (continued)",
@@ -598,7 +599,7 @@
     // Build the dynamic calendar: Show only the weeks for the chosen month
     function showMonth(selectedMonth) {
       const container = document.getElementById("month-container");
-      container.innerHTML = ""; // Clear
+      container.innerHTML = ""; // Clear old data
 
       // Filter weeks for the selected month
       const filteredWeeks = scheduleData.filter(
@@ -640,10 +641,10 @@
         card.appendChild(cardBody);
         container.appendChild(card);
 
-        // Small delay to stagger animations (optional)
+        // Small delay to stagger the card animations
         card.style.animationDelay = `${0.1 * index}s`;
 
-        // Toggle the display of details on click
+        // Toggle display of details on click
         cardHeader.addEventListener("click", function () {
           const isVisible = cardBody.style.display === "block";
           cardBody.style.display = isVisible ? "none" : "block";
@@ -652,8 +653,12 @@
       });
     }
 
-    // Initialize table on load
+    // Initialize the syllabus table on load
     buildSyllabusTable();
+    
+    // By default, show the Home section
+    // (If you want the site to load with something else, change it here)
+    showTab("home");
   </script>
 </body>
 </html>
