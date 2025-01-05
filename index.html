@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Biology Course - Calendar & Syllabus</title>
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  />
+  <!-- Optional: You can add your own custom styles here -->
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar styling */
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    /* Calendar styling */
+    .calendar {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .calendar h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .calendar-table th,
+    .calendar-table td {
+      width: 14.285%; /* 100% / 7 days (if you want a day-based table) */
+      text-align: center;
+      vertical-align: top;
+      border: 1px solid #ddd;
+      height: 100px;
+      cursor: pointer;
+    }
+    .calendar-table th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    .calendar-table td:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Make the “Week X” labels stand out */
+    .week-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    /* Syllabus Table styling */
+    #syllabusTable {
+      margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    #syllabusTable th,
+    #syllabusTable td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    #syllabusTable th {
+      background-color: #f8f9fa;
+    }
+    .mb-0 {
+      margin-bottom: 0 !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Biology Course</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#home" data-toggle="tab"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#syllabus" data-toggle="tab"
+          >Syllabus</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="tab-content">
+
+  <!-- HOME TAB / CALENDAR -->
+  <div class="tab-pane container active" id="home">
+    <div class="container calendar">
+      <h1 class="mt-4 text-center">Course Calendar</h1>
+
+      <!-- You can adapt the months to your specific semester schedule -->
+      <!-- JANUARY -->
+      <h2>January</h2>
+      <table class="calendar-table mb-5">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- Empty cells before January 1st, adjust if needed -->
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <!-- Example: Week 1 starts Jan 4 (Adjust as needed) -->
+              <span class="week-label" data-toggle="modal" data-target="#week1Modal">
+                Week 1
+              </span>
+              <div>Course Syllabus</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week2Modal">
+                Week 2
+              </span>
+              <div>The Scientific Method</div>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <!-- fill days or simply skip for demonstration -->
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week3Modal">
+                Week 3
+              </span>
+              <div>Finding Info About Topics</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week4Modal">
+                Week 4
+              </span>
+              <div>Statistical Analyses</div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- FEBRUARY -->
+      <h2>February</h2>
+      <table class="calendar-table mb-5">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week5Modal">
+                Week 5
+              </span>
+              <div>Documenting Sources</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week6Modal">
+                Week 6
+              </span>
+              <div>Preparing a Paper</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week7Modal">
+                Week 7
+              </span>
+              <div>Data Analysis</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week8Modal">
+                Week 8
+              </span>
+              <div>Editing Documents</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week9Modal">
+                Week 9
+              </span>
+              <div>Editing Documents (cont.)</div>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- MARCH -->
+      <h2>March</h2>
+      <table class="calendar-table mb-5">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week10Modal">
+                Week 10
+              </span>
+              <div>Spring Break</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week11Modal">
+                Week 11
+              </span>
+              <div>Poster Presentations</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week12Modal">
+                Week 12
+              </span>
+              <div>Oral Presentations</div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- APRIL -->
+      <h2>April</h2>
+      <table class="calendar-table mb-5">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week13Modal">
+                Week 13
+              </span>
+              <div>Student Presentations</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week14Modal">
+                Week 14
+              </span>
+              <div>Student Presentations</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week15Modal">
+                Week 15
+              </span>
+              <div>Student Presentations</div>
+            </td>
+            <td>
+              <span class="week-label" data-toggle="modal" data-target="#week16Modal">
+                Week 16
+              </span>
+              <div>Student Presentations</div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SYLLABUS TAB -->
+  <div class="tab-pane container fade" id="syllabus">
+    <div class="container">
+      <h1 class="mt-4 text-center">Full Syllabus</h1>
+      <p class="text-center mb-0">
+        Below is the complete overview of weeks, topics, objectives, and assessments.
+      </p>
+      <table id="syllabusTable" class="mt-3">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Chapter</th>
+            <th>Topic</th>
+            <th>Course Objectives</th>
+            <th>SLOs</th>
+            <th>Activities</th>
+            <th>Assessments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1</td>
+            <td></td>
+            <td>Course Syllabus</td>
+            <td>Introduction, syllabus review</td>
+            <td>Students can select interesting biological topics.</td>
+            <td>Introduction, syllabus review</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td>The Scientific Method</td>
+            <td>Basics of the scientific method and experimental design</td>
+            <td>Teach principles of the scientific method and hypothesis formation</td>
+            <td>Formulate hypotheses; identify variables.</td>
+            <td>
+              Discussion on students' selected topics, article selection and database use for references
+            </td>
+            <td>The students practice searching articles related to the topic of interest.</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>Finding Information About Topics in Science</td>
+            <td>How to research and evaluate scientific sources</td>
+            <td>Develop research skills to find and assess credible sources</td>
+            <td>Locate and assess reliable scientific sources</td>
+            <td>Scavenger hunts for articles; compare sources</td>
+            <td>Quiz; submit experiment designs, evaluate sources, and submit bibliography.</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>Reading and Writing About Statistical Analyses</td>
+            <td>Understanding and writing about statistical data</td>
+            <td>Train students to interpret and write about statistics</td>
+            <td>Analyze and interpret statistical results</td>
+            <td>Analyze datasets and improve graph design</td>
+            <td>Write data analysis reports and graphs</td>
+          </tr>
+          <tr>
+            <td>Week 5</td>
+            <td>Documenting Sources</td>
+            <td>Proper citation and avoiding plagiarism</td>
+            <td>Teach proper citation practices and plagiarism prevention</td>
+            <td>Cite sources correctly; avoid plagiarism</td>
+            <td>Practice formatting citations; discuss plagiarism</td>
+            <td>
+              Submit citation exercises; plagiarism response. <br />
+              Students should annotate at least 5 articles, of which at least 2 articles will be used for presentation.
+            </td>
+          </tr>
+          <tr>
+            <td>Week 6</td>
+            <td>Preparing a Scientific Paper</td>
+            <td>Step-by-step guidance for scientific writing</td>
+            <td>Guide students to write structured scientific papers</td>
+            <td>Write clear, organized scientific papers</td>
+            <td>Create outlines and peer review sections</td>
+            <td>Draft paper; Quiz on paper structure</td>
+          </tr>
+          <tr>
+            <td>Week 7</td>
+            <td>Data Analysis Using Statistics</td>
+            <td>Statistical data analysis and presentation</td>
+            <td>Enable accurate analysis and presentation of statistical data</td>
+            <td>Perform and present statistical analyses</td>
+            <td>Select statistical tests and graph analysis</td>
+            <td>Submit statistical analyses and graphs</td>
+          </tr>
+          <tr>
+            <td>Week 8 and 9</td>
+            <td></td>
+            <td>Editing and improving scientific documents</td>
+            <td>Enhance revision skills for scientific writing</td>
+            <td>Revise drafts for clarity and accuracy</td>
+            <td>Edit texts; provide peer feedback</td>
+            <td>Submit revised drafts; use feedback checklists</td>
+          </tr>
+          <tr>
+            <td>Week 10</td>
+            <td></td>
+            <td>Spring Break</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Week 11</td>
+            <td>Poster Presentations</td>
+            <td>Designing and presenting scientific posters</td>
+            <td>Teach effective poster design and presentation skills</td>
+            <td>Design and present scientific posters</td>
+            <td>Mock poster session; poster critique</td>
+            <td>Prepare and Submit posters; Quiz</td>
+          </tr>
+          <tr>
+            <td>Week 12</td>
+            <td>Oral Presentations</td>
+            <td>Preparing and delivering oral presentations</td>
+            <td>Prepare students for professional oral presentations</td>
+            <td>Deliver structured, engaging oral talks</td>
+            <td>Three-minute thesis; presentation practice</td>
+            <td>Prepare oral presentations; submit slides</td>
+          </tr>
+          <tr>
+            <td>Week 13-16</td>
+            <td></td>
+            <td>Student presentation</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS FOR WEEKS (details) -->
+<!-- Week 1 Modal -->
+<div
+  class="modal fade"
+  id="week1Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week1ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week1ModalLabel">Week 1 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Course Syllabus<br />
+        <strong>Course Objectives:</strong> Introduction, syllabus review<br />
+        <strong>SLOs:</strong> Students can select interesting biological topics.<br />
+        <strong>Activities:</strong> Introduction, syllabus review<br />
+        <strong>Assessments:</strong> (none listed)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 2 Modal -->
+<div
+  class="modal fade"
+  id="week2Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week2ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week2ModalLabel">Week 2 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> The Scientific Method<br />
+        <strong>Topic:</strong> Basics of the scientific method and experimental design.<br />
+        <strong>Course Objectives:</strong> Teach principles of the scientific method and hypothesis formation.<br />
+        <strong>SLOs:</strong> Formulate hypotheses; identify variables.<br />
+        <strong>Activities:</strong> Discussion on students' selected topics, with the instructor demonstrating article selection and database use for references.<br />
+        <strong>Assessments:</strong> The students practice searching articles related to the topic of interest.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 3 Modal -->
+<div
+  class="modal fade"
+  id="week3Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week3ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week3ModalLabel">Week 3 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Finding Information About Topics in Science<br />
+        <strong>Topic:</strong> How to research and evaluate scientific sources.<br />
+        <strong>Course Objectives:</strong> Develop research skills to find and assess credible sources.<br />
+        <strong>SLOs:</strong> Locate and assess reliable scientific sources.<br />
+        <strong>Activities:</strong> Scavenger hunts for articles; compare sources.<br />
+        <strong>Assessments:</strong> Quiz; submit experiment designs, evaluate sources, and submit bibliography.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 4 Modal -->
+<div
+  class="modal fade"
+  id="week4Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week4ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week4ModalLabel">Week 4 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Reading and Writing About Statistical Analyses<br />
+        <strong>Topic:</strong> Understanding and writing about statistical data.<br />
+        <strong>Course Objectives:</strong> Train students to interpret and write about statistics.<br />
+        <strong>SLOs:</strong> Analyze and interpret statistical results.<br />
+        <strong>Activities:</strong> Analyze datasets and improve graph design.<br />
+        <strong>Assessments:</strong> Write data analysis reports and graphs.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 5 Modal -->
+<div
+  class="modal fade"
+  id="week5Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week5ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week5ModalLabel">Week 5 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Documenting Sources<br />
+        <strong>Topic:</strong> Proper citation and avoiding plagiarism.<br />
+        <strong>Course Objectives:</strong> Teach proper citation practices and plagiarism prevention.<br />
+        <strong>SLOs:</strong> Cite sources correctly; avoid plagiarism.<br />
+        <strong>Activities:</strong> Practice formatting citations; discuss plagiarism.<br />
+        <strong>Assessments:</strong>
+        Submit citation exercises; plagiarism response.<br />
+        Students should annotate at least 5 articles, of which at least 2 articles will be focused on for presentation.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 6 Modal -->
+<div
+  class="modal fade"
+  id="week6Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week6ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week6ModalLabel">Week 6 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Preparing a Scientific Paper<br />
+        <strong>Topic:</strong> Step-by-step guidance for scientific writing.<br />
+        <strong>Course Objectives:</strong> Guide students to write structured scientific papers.<br />
+        <strong>SLOs:</strong> Write clear, organized scientific papers.<br />
+        <strong>Activities:</strong> Create outlines and peer review sections.<br />
+        <strong>Assessments:</strong> Draft paper; Quiz on paper structure.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 7 Modal -->
+<div
+  class="modal fade"
+  id="week7Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week7ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week7ModalLabel">Week 7 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Data Analysis Using Statistics<br />
+        <strong>Topic:</strong> Statistical data analysis and presentation.<br />
+        <strong>Course Objectives:</strong> Enable accurate analysis and presentation of statistical data.<br />
+        <strong>SLOs:</strong> Perform and present statistical analyses.<br />
+        <strong>Activities:</strong> Select statistical tests and graph analysis.<br />
+        <strong>Assessments:</strong> Submit statistical analyses and graphs.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 8 Modal -->
+<div
+  class="modal fade"
+  id="week8Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week8ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week8ModalLabel">Week 8 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Editing and improving scientific documents.<br />
+        <strong>Course Objectives:</strong> Enhance revision skills for scientific writing.<br />
+        <strong>SLOs:</strong> Revise drafts for clarity and accuracy.<br />
+        <strong>Activities:</strong> Edit texts; provide peer feedback.<br />
+        <strong>Assessments:</strong> Submit revised drafts; use feedback checklists.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 9 Modal -->
+<div
+  class="modal fade"
+  id="week9Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week9ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week9ModalLabel">Week 9 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Editing and improving scientific documents (continued).<br />
+        <strong>Course Objectives:</strong> Enhance revision skills for scientific writing.<br />
+        <strong>SLOs:</strong> Revise drafts for clarity and accuracy.<br />
+        <strong>Activities:</strong> Edit texts; provide peer feedback.<br />
+        <strong>Assessments:</strong> Submit revised drafts; use feedback checklists.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 10 Modal -->
+<div
+  class="modal fade"
+  id="week10Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week10ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week10ModalLabel">Week 10 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Spring Break<br />
+        <strong>Course Objectives:</strong> (none)<br />
+        <strong>SLOs:</strong> (none)<br />
+        <strong>Activities:</strong> Relax and recharge<br />
+        <strong>Assessments:</strong> (none)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 11 Modal -->
+<div
+  class="modal fade"
+  id="week11Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week11ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week11ModalLabel">Week 11 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Poster Presentations<br />
+        <strong>Topic:</strong> Designing and presenting scientific posters.<br />
+        <strong>Course Objectives:</strong> Teach effective poster design and presentation skills.<br />
+        <strong>SLOs:</strong> Design and present scientific posters.<br />
+        <strong>Activities:</strong> Mock poster session; poster critique.<br />
+        <strong>Assessments:</strong> Prepare and Submit posters to present at the end of this course, Quiz
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 12 Modal -->
+<div
+  class="modal fade"
+  id="week12Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week12ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week12ModalLabel">Week 12 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Chapter:</strong> Oral Presentations<br />
+        <strong>Topic:</strong> Preparing and delivering oral presentations.<br />
+        <strong>Course Objectives:</strong> Prepare students for professional oral presentations.<br />
+        <strong>SLOs:</strong> Deliver structured, engaging oral talks.<br />
+        <strong>Activities:</strong> Three-minute thesis; presentation practice.<br />
+        <strong>Assessments:</strong> Prepare oral presentations; submit slides to present at the end of this course.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 13 Modal -->
+<div
+  class="modal fade"
+  id="week13Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week13ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week13ModalLabel">Week 13 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Student presentations<br />
+        <strong>Course Objectives:</strong> (varies by student topic)<br />
+        <strong>SLOs:</strong> (varies)<br />
+        <strong>Activities:</strong> Student-led presentations<br />
+        <strong>Assessments:</strong> (instructor feedback / final evaluations)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 14 Modal -->
+<div
+  class="modal fade"
+  id="week14Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week14ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week14ModalLabel">Week 14 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Student presentations (continued)<br />
+        <strong>Course Objectives:</strong> (varies by student topic)<br />
+        <strong>SLOs:</strong> (varies)<br />
+        <strong>Activities:</strong> Student-led presentations<br />
+        <strong>Assessments:</strong> (instructor feedback / final evaluations)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 15 Modal -->
+<div
+  class="modal fade"
+  id="week15Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week15ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week15ModalLabel">Week 15 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Student presentations (continued)<br />
+        <strong>Course Objectives:</strong> (varies by student topic)<br />
+        <strong>SLOs:</strong> (varies)<br />
+        <strong>Activities:</strong> Student-led presentations<br />
+        <strong>Assessments:</strong> (instructor feedback / final evaluations)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Week 16 Modal -->
+<div
+  class="modal fade"
+  id="week16Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="week16ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="week16ModalLabel">Week 16 Details</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Topic:</strong> Student presentations (continued)<br />
+        <strong>Course Objectives:</strong> (varies by student topic)<br />
+        <strong>SLOs:</strong> (varies)<br />
+        <strong>Activities:</strong> Student-led presentations<br />
+        <strong>Assessments:</strong> (instructor feedback / final evaluations)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center p-3 bg-light">
+  <small>&copy; 2025 Biology Department - All Rights Reserved</small>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+></script>
+</body>
+</html>
